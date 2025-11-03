@@ -1,27 +1,23 @@
-import { MissionUtils } from '@woowacourse/mission-utils';
 import Lotto from '../Lotto.js';
-import { PRICE_PER_TICKET, LOTTO_SIZE, MIN_NUMBER, MAX_NUMBER } from './constants.js';
+import { PRICE_PER_TICKET } from './constants.js';
+import LottoGenerator from './LottoGenerator.js';
 
 class LottoMachine {
-  issue(amount) {
-    const count = amount / PRICE_PER_TICKET;
-    const tickets = [];
+  #generator;
 
-    for (let i = 0; i < count; i += 1) {
-      const numbers = this.#generateLottoNumbers();
-      tickets.push(new Lotto(numbers));
-    }
-
-    return tickets;
+  constructor() {
+    this.#generator = new LottoGenerator();
   }
 
-  #generateLottoNumbers() {
-    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(
-      MIN_NUMBER,
-      MAX_NUMBER,
-      LOTTO_SIZE,
-    );
-    return numbers.sort((a, b) => a - b);
+  issue(amount) {
+    const count = amount / PRICE_PER_TICKET;
+
+    const tickets = Array.from({ length: count }, () => {
+      const numbers = this.#generator.generate();
+      return new Lotto(numbers);
+    });
+
+    return tickets;
   }
 }
 
