@@ -1,5 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import { MESSAGE } from '../domain/constants.js';
+import { MESSAGE, ARRAY_JOIN_SEPARATOR } from '../domain/constants.js';
 
 class OutputView {
   static printLottoList(tickets) {
@@ -8,7 +8,7 @@ class OutputView {
   }
 
   static #printLotto(ticket) {
-    const numbers = ticket.getNumbers().join(', ');
+    const numbers = ticket.getNumbers().join(ARRAY_JOIN_SEPARATOR);
     MissionUtils.Console.print(`[${numbers}]`);
   }
 }

@@ -7,7 +7,24 @@ export const DECIMAL_POINT = 2;
 
 export const MESSAGE = {
   PURCHASE_RESULT: (count) => `${count}개를 구매했습니다.`,
+  INPUT_PURCHASE_AMOUNT: '구입금액을 입력해 주세요.\n',
+  INPUT_WINNING_NUMBERS: '\n당첨 번호를 입력해 주세요.\n',
+  INPUT_BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
+  STATISTICS_TITLE: '당첨 통계',
+  STATISTICS_SEPARATOR: '---',
+  PROFIT_RATE_LABEL: '총 수익률은 ',
+  PROFIT_RATE_SUFFIX: '%입니다.',
 };
+
+export const RANK_MESSAGES = {
+  5: '3개 일치 (5,000원)',
+  4: '4개 일치 (50,000원)',
+  3: '5개 일치 (1,500,000원)',
+  2: '5개 일치, 보너스 볼 일치 (30,000,000원)',
+  1: '6개 일치 (2,000,000,000원)',
+};
+
+export const ARRAY_JOIN_SEPARATOR = ', ';
 
 export const ERROR_MESSAGE = {
   NOT_NUMBER: '[ERROR] 구입 금액은 숫자여야 합니다.',
