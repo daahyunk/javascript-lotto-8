@@ -13,4 +13,5 @@ export const ERROR_MESSAGE = {
   NOT_DIVISIBLE: '[ERROR] 구입 금액은 1,000원 단위여야 합니다.',
   LOTTO_LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
   LOTTO_DUPLICATE: '[ERROR] 로또 번호는 중복될 수 없습니다.',
+  INVALID_WINNING_NUMBERS: '[ERROR] 당첨 번호 형식이 올바르지 않습니다.',
 };

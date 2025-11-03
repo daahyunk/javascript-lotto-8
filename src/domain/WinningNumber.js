@@ -1,4 +1,4 @@
-import { LOTTO_SIZE, MIN_NUMBER, MAX_NUMBER } from './constants.js';
+import { LOTTO_SIZE, MIN_NUMBER, MAX_NUMBER, ERROR_MESSAGE } from './constants.js';
 
 class WinningNumbers {
   #numbers;
@@ -10,26 +10,35 @@ class WinningNumbers {
   }
 
   #parseInput(input) {
-    return input
-      .split(',')
-      .map((num) => Number(num.trim()))
-      .filter((num) => !Number.isNaN(num));
+    return input.split(',').map((num) => Number(num.trim()));
   }
 
   #validate(numbers) {
-    if (numbers.length !== LOTTO_SIZE) {
-      throw new Error('[ERROR] 당첨 번호 형식이 올바르지 않습니다.');
+    const { INVALID_WINNING_NUMBERS } = ERROR_MESSAGE;
+
+    if (!this.#hasValidLength(numbers)) {
+      throw new Error(INVALID_WINNING_NUMBERS);
     }
 
-    const isInRange = numbers.every((num) => num >= MIN_NUMBER && num <= MAX_NUMBER);
-    if (!isInRange) {
-      throw new Error('[ERROR] 당첨 번호 형식이 올바르지 않습니다.');
+    if (!this.#isInRange(numbers)) {
+      throw new Error(INVALID_WINNING_NUMBERS);
     }
 
-    const uniqueNumbers = new Set(numbers);
-    if (uniqueNumbers.size !== numbers.length) {
-      throw new Error('[ERROR] 당첨 번호 형식이 올바르지 않습니다.');
+    if (!this.#hasUniqueNumbers(numbers)) {
+      throw new Error(INVALID_WINNING_NUMBERS);
     }
+  }
+
+  #hasValidLength(numbers) {
+    return numbers.length === LOTTO_SIZE;
+  }
+
+  #isInRange(numbers) {
+    return numbers.every((num) => num >= MIN_NUMBER && num <= MAX_NUMBER);
+  }
+
+  #hasUniqueNumbers(numbers) {
+    return new Set(numbers).size === numbers.length;
   }
 
   getNumbers() {
