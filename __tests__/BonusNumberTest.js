@@ -1,5 +1,5 @@
 import BonusNumber from "../src/domain/BonusNumber";
-import WinningNumbers from "../src/domain/WinningNumber";
+import WinningNumbers from "../src/domain/WinningNumbers";
 
 describe("BonusNumber", () => {
   test("정상 입력: 보너스 번호를 숫자로 변환한다", () => {

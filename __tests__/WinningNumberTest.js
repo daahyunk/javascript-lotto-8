@@ -1,4 +1,4 @@
-import WinningNumbers from "../src/domain/WinningNumber";
+import WinningNumbers from "../src/domain/WinningNumbers";
 
 describe("WinningNumbers", () => {
   test("쉼표로 구분된 6개의 숫자를 입력하면 배열로 변환된다", () => {
