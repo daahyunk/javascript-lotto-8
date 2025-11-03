@@ -1,4 +1,4 @@
-import LottoMachine from "../domain/LottoMachine.js";
+import LottoMachine from "../src/domain/LottoMachine";
 
 describe("LottoMachine", () => {
   test("구입 금액에 따라 구매 가능한 로또 개수를 계산한다", () => {
@@ -12,7 +12,7 @@ describe("LottoMachine", () => {
     const lottoMachine = new LottoMachine();
     const tickets = lottoMachine.issue(1000);
 
-    const numbers = tickets[0].numbers;
+    const numbers = tickets[0].getNumbers();
     const uniqueNumbers = new Set(numbers);
 
     expect(numbers.length).toBe(6);
