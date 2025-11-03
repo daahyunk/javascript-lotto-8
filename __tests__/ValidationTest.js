@@ -1,4 +1,4 @@
-import validatePurchaseAmount from "../src/utils/validation";
+import { validatePurchaseAmount } from "../src/utils/validation";
 
 describe("validatePurchaseAmount", () => {
   test.each([

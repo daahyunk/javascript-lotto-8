@@ -1,4 +1,5 @@
-import { LOTTO_SIZE, MIN_NUMBER, MAX_NUMBER, ERROR_MESSAGE } from './constants.js';
+import { LOTTO_SIZE, ERROR_MESSAGE } from './constants.js';
+import { validateNumbersRange, validateUniqueNumbers } from '../utils/validation.js';
 
 class WinningNumbers {
   #numbers;
@@ -16,29 +17,12 @@ class WinningNumbers {
   #validate(numbers) {
     const { INVALID_WINNING_NUMBERS } = ERROR_MESSAGE;
 
-    if (!this.#hasValidLength(numbers)) {
+    if (numbers.length !== LOTTO_SIZE) {
       throw new Error(INVALID_WINNING_NUMBERS);
     }
 
-    if (!this.#isInRange(numbers)) {
-      throw new Error(INVALID_WINNING_NUMBERS);
-    }
-
-    if (!this.#hasUniqueNumbers(numbers)) {
-      throw new Error(INVALID_WINNING_NUMBERS);
-    }
-  }
-
-  #hasValidLength(numbers) {
-    return numbers.length === LOTTO_SIZE;
-  }
-
-  #isInRange(numbers) {
-    return numbers.every((num) => num >= MIN_NUMBER && num <= MAX_NUMBER);
-  }
-
-  #hasUniqueNumbers(numbers) {
-    return new Set(numbers).size === numbers.length;
+    validateNumbersRange(numbers, INVALID_WINNING_NUMBERS);
+    validateUniqueNumbers(numbers, INVALID_WINNING_NUMBERS);
   }
 
   getNumbers() {

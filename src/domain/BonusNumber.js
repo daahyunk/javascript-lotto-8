@@ -1,28 +1,25 @@
-import { MIN_NUMBER, MAX_NUMBER, ERROR_MESSAGE } from './constants.js';
+import { ERROR_MESSAGE } from './constants.js';
+import { validateNumberRange } from '../utils/validation.js';
 
 class BonusNumber {
   #number;
 
   constructor(input, winningNumbers) {
     const number = Number.parseInt(input, 10);
-    this.#validateBonusNumber(number, winningNumbers);
+    this.#validate(number, winningNumbers);
     this.#number = number;
   }
 
-  #validateBonusNumber(number, winningNumbers) {
+  #validate(number, winningNumbers) {
     const { INVALID_BONUS_NUMBER } = ERROR_MESSAGE;
 
     if (Number.isNaN(number)) {
       throw new Error(INVALID_BONUS_NUMBER);
     }
 
-    const isOutOfRange = number < MIN_NUMBER || number > MAX_NUMBER;
-    if (isOutOfRange) {
-      throw new Error(INVALID_BONUS_NUMBER);
-    }
+    validateNumberRange(number, INVALID_BONUS_NUMBER);
 
-    const isDuplicated = winningNumbers.includes(number);
-    if (isDuplicated) {
+    if (winningNumbers.includes(number)) {
       throw new Error(INVALID_BONUS_NUMBER);
     }
   }
