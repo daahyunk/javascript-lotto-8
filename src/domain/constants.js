@@ -14,4 +14,5 @@ export const ERROR_MESSAGE = {
   LOTTO_LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
   LOTTO_DUPLICATE: '[ERROR] 로또 번호는 중복될 수 없습니다.',
   INVALID_WINNING_NUMBERS: '[ERROR] 당첨 번호 형식이 올바르지 않습니다.',
+  INVALID_BONUS_NUMBER: '[ERROR] 보너스 번호가 올바르지 않습니다.',
 };
