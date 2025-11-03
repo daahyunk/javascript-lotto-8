@@ -1,11 +1,15 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
+import { MESSAGE } from '../domain/constants.js';
 
 class OutputView {
   static printLottoList(tickets) {
-    MissionUtils.Console.print(`${tickets.length}개를 구매했습니다.`);
-    tickets.forEach((ticket) => {
-      MissionUtils.Console.print(`[${ticket.getNumbers().join(', ')}]`);
-    });
+    MissionUtils.Console.print(MESSAGE.PURCHASE_RESULT(tickets.length));
+    tickets.forEach(OutputView.#printLotto);
+  }
+
+  static #printLotto(ticket) {
+    const numbers = ticket.getNumbers().join(', ');
+    MissionUtils.Console.print(`[${numbers}]`);
   }
 }
 
