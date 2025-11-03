@@ -7,4 +7,6 @@ export const ERROR_MESSAGE = {
   NOT_NUMBER: '[ERROR] 구입 금액은 숫자여야 합니다.',
   NOT_POSITIVE: '[ERROR] 구입 금액은 0보다 커야 합니다.',
   NOT_DIVISIBLE: '[ERROR] 구입 금액은 1,000원 단위여야 합니다.',
+  LOTTO_LENGTH: '[ERROR] 로또 번호는 6개여야 합니다.',
+  LOTTO_DUPLICATE: '[ERROR] 로또 번호는 중복될 수 없습니다.',
 };
