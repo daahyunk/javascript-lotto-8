@@ -1,5 +1,6 @@
+import { MissionUtils } from '@woowacourse/mission-utils';
 import Lotto from '../Lotto.js';
-import { PRICE_PER_TICKET } from './constants.js';
+import { PRICE_PER_TICKET, LOTTO_SIZE, MIN_NUMBER, MAX_NUMBER } from './constants.js';
 
 class LottoMachine {
   issue(amount) {
@@ -15,14 +16,12 @@ class LottoMachine {
   }
 
   #generateLottoNumbers() {
-    const numbers = new Set();
-
-    while (numbers.size < 6) {
-      const random = Math.floor(Math.random() * 45) + 1;
-      numbers.add(random);
-    }
-
-    return Array.from(numbers).sort((a, b) => a - b);
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(
+      MIN_NUMBER,
+      MAX_NUMBER,
+      LOTTO_SIZE,
+    );
+    return numbers.sort((a, b) => a - b);
   }
 }
 
