@@ -2,6 +2,8 @@ export const PRICE_PER_TICKET = 1000;
 export const LOTTO_SIZE = 6;
 export const MIN_NUMBER = 1;
 export const MAX_NUMBER = 45;
+export const PERCENTAGE = 100;
+export const DECIMAL_POINT = 2;
 
 export const MESSAGE = {
   PURCHASE_RESULT: (count) => `${count}개를 구매했습니다.`,

@@ -1,38 +1,28 @@
-import LottoRank from './LottoRank.js';
+import LottoRank, { RANKS } from './LottoRank.js';
+import { PERCENTAGE, DECIMAL_POINT } from './constants.js';
 
 class ResultCalculator {
   static calculateRank(lottoNumbers, winningNumbers, bonusNumber) {
     const matchCount = this.#countMatches(lottoNumbers, winningNumbers);
     const hasBonus = lottoNumbers.includes(bonusNumber);
     const rankInfo = LottoRank.getRank(matchCount, hasBonus);
-
-    return {
-      rank: rankInfo?.rank ?? null,
-      prize: rankInfo?.prize ?? 0,
-    };
+    return { rank: rankInfo?.rank ?? null, prize: rankInfo?.prize ?? 0 };
   }
 
   static calculateStatistics(lottos, winningNumbers, bonusNumber) {
-    const result = {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0,
-      null: 0,
-    };
+    const rankCounts = Object.fromEntries([...RANKS.map((r) => [r.rank, 0]), ['null', 0]]);
 
     lottos.forEach((lotto) => {
       const { rank } = this.calculateRank(lotto, winningNumbers, bonusNumber);
-      result[rank] += 1;
+      rankCounts[rank] += 1;
     });
 
-    return result;
+    return rankCounts;
   }
 
   static calculateProfitRate(totalPrize, totalPurchaseAmount) {
-    const profitRate = (totalPrize / totalPurchaseAmount) * 100;
-    return `${profitRate.toFixed(2)}%`;
+    const profitRate = (totalPrize / totalPurchaseAmount) * PERCENTAGE;
+    return `${profitRate.toFixed(DECIMAL_POINT)}%`;
   }
 
   static #countMatches(lottoNumbers, winningNumbers) {
